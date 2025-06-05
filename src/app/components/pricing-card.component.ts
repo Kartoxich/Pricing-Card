@@ -8,29 +8,36 @@ import { PricingPlan } from '../interfaces/pricing-plan.interface';
   imports: [CommonModule],
   template: `
     <div
-      class="pricing-card"
+      class="w-full max-w-sm mx-auto bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out relative focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 hover:shadow-xl hover:-translate-y-1"
       [class.featured]="isFeatured"
       [attr.tabindex]="0"
       role="region"
       [attr.aria-label]="plan + ' pricing plan'"
     >
-      <div class="card-header">
-        <h3 class="plan-name">{{ plan }}</h3>
-        <div class="price">{{ price }}</div>
+      <div class="px-8 py-8 text-center">
+        <h3 class="text-xl font-medium mb-4 text-gray-600" [class.text-white]="isFeatured">{{ plan }}</h3>
+        <div class="text-5xl font-bold text-gray-900" [class.text-white]="isFeatured">{{ price }}</div>
       </div>
       
-      <div class="features-section">
-        <ul class="features-list">
-          <li *ngFor="let feature of features" class="feature-item">
+      <div class="px-8 pb-6">
+        <ul class="list-none space-y-0">
+          <li *ngFor="let feature of features" 
+              class="text-center text-gray-600 text-base py-3 border-b border-gray-200"
+              [class.text-white]="isFeatured"
+              [class.border-gray-500]="isFeatured">
             {{ feature }}
           </li>
         </ul>
       </div>
       
-      <div class="card-footer">
+      <div class="px-8 pb-8">
         <button 
-          class="subscribe-button"
-          [class.featured-button]="isFeatured"
+          class="w-full py-3 px-6 bg-transparent border border-gray-400 text-gray-600 font-semibold text-sm tracking-wide rounded cursor-pointer transition-all duration-200 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
+          [class.border-white]="isFeatured"
+          [class.text-white]="isFeatured"
+          [class.hover:bg-white]="isFeatured"
+          [class.hover:text-slate-700]="isFeatured"
+          [class.focus:ring-white]="isFeatured"
           type="button"
           [attr.aria-label]="'Subscribe to ' + plan + ' plan'"
         >
@@ -40,133 +47,13 @@ import { PricingPlan } from '../interfaces/pricing-plan.interface';
     </div>
   `,
   styles: [`
-    .pricing-card {
-      width: 100%;
-      max-width: 320px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .pricing-card:focus {
-      outline: none;
-      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.5);
-    }
-
-    .pricing-card:hover {
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-      transform: translateY(-4px);
-    }
-
-    .pricing-card.featured {
-      background: #475569;
-      color: white;
-      transform: scale(1.05);
-      z-index: 10;
-    }
-
-    .card-header {
-      padding: 2rem;
-      text-align: center;
-    }
-
-    .plan-name {
-      font-size: 1.25rem;
-      font-weight: 500;
-      margin-bottom: 1rem;
-      color: #6b7280;
-    }
-
-    .featured .plan-name {
-      color: white;
-    }
-
-    .price {
-      font-size: 3rem;
-      font-weight: bold;
-      color: #111827;
-    }
-
-    .featured .price {
-      color: white;
-    }
-
-    .features-section {
-      padding: 0 2rem 1.5rem;
-    }
-
-    .features-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .feature-item {
-      text-align: center;
-      color: #6b7280;
-      font-size: 1rem;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    .featured .feature-item {
-      color: white;
-      border-bottom-color: #64748b;
-    }
-
-    .card-footer {
-      padding: 0 2rem 2rem;
-    }
-
-    .subscribe-button {
-      width: 100%;
-      padding: 0.75rem 1.5rem;
-      background: transparent;
-      border: 1px solid #9ca3af;
-      color: #6b7280;
-      font-weight: 600;
-      font-size: 0.875rem;
-      letter-spacing: 0.05em;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .subscribe-button:hover {
-      background: #f9fafb;
-    }
-
-    .subscribe-button:focus {
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(107, 114, 128, 0.5);
-    }
-
-    .subscribe-button.featured-button {
-      border-color: white;
-      color: white;
-    }
-
-    .subscribe-button.featured-button:hover {
-      background: white;
-      color: #475569;
-    }
-
-    .subscribe-button.featured-button:focus {
-      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+    .featured {
+      @apply bg-slate-700 text-white transform scale-105 z-10;
     }
 
     @media (max-width: 639px) {
-      .pricing-card {
-        max-width: none;
-        margin-bottom: 1.5rem;
-      }
-      
-      .pricing-card.featured {
-        transform: scale(1);
+      .featured {
+        @apply scale-100;
       }
     }
   `]

@@ -8,76 +8,24 @@ import { PricingPlan } from '../interfaces/pricing-plan.interface';
   standalone: true,
   imports: [CommonModule, PricingCardComponent],
   template: `
-    <section class="pricing-section">
-      <div class="container">
-        <h1 class="main-title">Pricing</h1>
+    <section class="min-h-screen bg-gray-900 py-16 px-4 flex items-center">
+      <div class="max-w-7xl mx-auto w-full">
+        <h1 class="text-5xl font-bold text-white text-center mb-16">Pricing</h1>
         
-        <div class="cards-container">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
           <app-pricing-card
             *ngFor="let plan of pricingPlans"
             [plan]="plan.plan"
             [price]="plan.price"
             [features]="plan.features"
             [isFeatured]="plan.isFeatured || false"
+            class="sm:mb-6 md:mb-0"
           ></app-pricing-card>
         </div>
       </div>
     </section>
   `,
-  styles: [`
-    .pricing-section {
-      min-height: 100vh;
-      background: #111827;
-      padding: 4rem 1rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .main-title {
-      font-size: 3rem;
-      font-weight: bold;
-      color: white;
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .cards-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-      align-items: start;
-    }
-
-    @media (min-width: 768px) {
-      .cards-container {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    @media (max-width: 639px) {
-      .pricing-section {
-        padding: 2rem 1rem;
-      }
-      
-      .main-title {
-        font-size: 2.5rem;
-        margin-bottom: 2rem;
-      }
-      
-      .cards-container {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-    }
-  `]
+  styles: []
 })
 export class PricingSectionComponent {
   pricingPlans: PricingPlan[] = [
