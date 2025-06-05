@@ -8,7 +8,7 @@ import { PricingPlan } from '../interfaces/pricing-plan.interface';
   imports: [CommonModule],
   template: `
     <div
-      class="w-full max-w-sm mx-auto bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out relative focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 hover:shadow-xl hover:-translate-y-1"
+      class="w-full max-w-sm mx-auto bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out relative focus:outline-none focus:ring-4 focus:ring-blue-400 focus:ring-opacity-75 hover:shadow-xl hover:-translate-y-1"
       [class.featured]="isFeatured"
       [attr.tabindex]="0"
       role="region"
@@ -32,12 +32,13 @@ import { PricingPlan } from '../interfaces/pricing-plan.interface';
       
       <div class="px-8 pb-8">
         <button 
-          class="w-full py-3 px-6 bg-transparent border border-gray-400 text-gray-600 font-semibold text-sm tracking-wide rounded cursor-pointer transition-all duration-200 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
+          class="w-full py-3 px-6 bg-transparent border border-gray-400 text-gray-600 font-semibold text-sm tracking-wide rounded cursor-pointer transition-all duration-200 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-blue-400 focus:ring-opacity-75"
           [class.border-white]="isFeatured"
           [class.text-white]="isFeatured"
           [class.hover:bg-white]="isFeatured"
           [class.hover:text-slate-700]="isFeatured"
           [class.focus:ring-white]="isFeatured"
+          [class.focus:ring-opacity-100]="isFeatured"
           type="button"
           [attr.aria-label]="'Subscribe to ' + plan + ' plan'"
         >
@@ -49,6 +50,10 @@ import { PricingPlan } from '../interfaces/pricing-plan.interface';
   styles: [`
     .featured {
       @apply bg-slate-700 text-white transform scale-105 z-10;
+    }
+
+    .featured:focus {
+      @apply ring-white ring-opacity-100;
     }
 
     @media (max-width: 639px) {
